@@ -1,0 +1,75 @@
+{
+  "name": "create-easyvue",
+  "version": "3.13.0",
+  "description": "An easy way to start a Vue project",
+  "type": "module",
+  "packageManager": "pnpm@9.6.0",
+  "bin": {
+    "create-easyvue": "outfile.cjs"
+  },
+  "files": [
+    "locales",
+    "outfile.cjs",
+    "template"
+  ],
+  "engines": {
+    "node": ">=v18.3.0"
+  },
+  "scripts": {
+    "prerc": "npm --no-git-tag-version version minor",
+    "rc": "pnpm push",
+    "commit": "git add . && git commit -am ",
+    "c": "pnpm commit",
+    "g": "pnpm push",
+    "push": "pnpm commit",
+    "_push": "git push origin",
+    "_pull": "git pull origin",
+    "postpush": "uname -s | grep -q Darwin && pnpm _push || while true; do timeout 10 pnpm _push && break; done",
+    "pull": "uname -s | grep -q Darwin && pnpm _pull || while true; do timeout 10 pnpm _pull && break; done",
+    "lab": "pnpm build && ./outfile.cjs",
+    "diff": "npx -y cpgit vuejs/create-vue . -f",
+    "prepare": "husky",
+    "format": "prettier --write .",
+    "build": "zx ./scripts/build.mjs",
+    "snapshot": "zx ./scripts/snapshot.mjs",
+    "pretest": "run-s build snapshot",
+    "test": "zx ./scripts/test.mjs",
+    "test:unit": "vitest",
+    "prepublishOnly": "pnpm build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xnscu/create-easyvue.git"
+  },
+  "keywords": [],
+  "author": "Haoqun Jiang <haoqunjiang+npm@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xnscu/create-easyvue/issues"
+  },
+  "homepage": "https://github.com/xnscu/create-easyvue#readme",
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "@types/eslint": "^9.6.0",
+    "@types/node": "^20.14.14",
+    "@types/prompts": "^2.4.9",
+    "@vue/create-eslint-config": "^0.3.3",
+    "@vue/tsconfig": "^0.5.1",
+    "ejs": "^3.1.10",
+    "esbuild": "^0.18.20",
+    "esbuild-plugin-license": "^1.2.3",
+    "husky": "^9.1.4",
+    "kolorist": "^1.8.0",
+    "lint-staged": "^15.2.8",
+    "npm-run-all2": "^6.2.2",
+    "prettier": "^3.3.3",
+    "prompts": "^2.4.2",
+    "vitest": "^2.0.5",
+    "zx": "^8.1.4"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue,json}": [
+      "prettier --write"
+    ]
+  }
+}

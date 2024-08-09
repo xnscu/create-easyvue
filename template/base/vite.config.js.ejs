@@ -1,0 +1,34 @@
+import { fileURLToPath, URL } from 'node:url'
+
+import { defineConfig } from 'vite'
+<%_ for (const { importer } of plugins) { _%>
+<%- importer %>
+<%_ } _%>
+
+import * as dotenv from "dotenv"
+import dotenvExpand from "dotenv-expand"
+
+const { parsed: exposedEnvs } = dotenvExpand.expand({
+  ...dotenv.config({
+    override: false,
+    path: ".env",
+  }),
+  ignoreProcessEnv: true,
+});
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  base: "/",
+  define: Object.fromEntries(Object.entries(exposedEnvs || {}).map(([k, v]) => [`process.env.${k}`, JSON.stringify(v)])),
+  plugins: [
+  <%_ for (const { initializer } of plugins) { _%>
+    <%- initializer _%>,
+  <%_ } _%>
+  ],
+  resolve: {
+    alias: {
+      "~": fileURLToPath(new URL("./", import.meta.url)),
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  }
+})

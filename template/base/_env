@@ -1,0 +1,3 @@
+ENV1=Vite
+ENV2=Vue 3
+TITLE=${ENV1} + ${ENV2}

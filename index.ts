@@ -218,7 +218,7 @@ async function init() {
           name: 'packageName',
           type: () => (isValidPackageName(targetDir) ? null : 'text'),
           message: language.packageName.message,
-          initial: () => toValidPackageName(targetDir),
+          initial: () => (targetDir === '.' ? path.basename(cwd) : toValidPackageName(targetDir)),
           validate: (dir) => isValidPackageName(dir) || language.packageName.invalidMessage
         }
       ],
@@ -266,21 +266,20 @@ async function init() {
   }
 
   console.log(`\n${language.infos.scaffolding} ${root}...`)
-
   const pkg = {
     name: packageName,
     version: '0.0.0',
     repository: {
       type: 'git',
-      url: `git+https://github.com/${userName}/${projectName}.git`
+      url: `git+https://github.com/${userName}/${packageName}.git`
     },
     bugs: {
-      url: `https://github.com/${userName}/${projectName}/issues`
+      url: `https://github.com/${userName}/${packageName}/issues`
     },
-    homepage: `https://github.com/${userName}/${projectName}#readme`,
+    homepage: `https://github.com/${userName}/${packageName}#readme`,
     scripts: {
-      'set-g': `git remote set-url origin git@github.com:${userName}/${projectName}.git`,
-      'add-g': `git remote add origin git@github.com:${userName}/${projectName}.git`
+      'set-g': `git remote set-url origin git@github.com:${userName}/${packageName}.git`,
+      'add-g': `git remote add origin git@github.com:${userName}/${packageName}.git`
     }
   }
   fs.writeFileSync(path.resolve(root, 'package.json'), JSON.stringify(pkg, null, 2))

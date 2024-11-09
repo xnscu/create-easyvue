@@ -1,6 +1,6 @@
 {
   "name": "create-easyvue",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "An easy way to start a Vue project",
   "type": "module",
   "bin": {
@@ -16,16 +16,16 @@
   },
   "scripts": {
     "prerc": "npm --no-git-tag-version version minor",
-    "rc": "pnpm push",
+    "rc": "npm run push",
     "commit": "git add . && git commit -am ",
-    "c": "pnpm commit",
-    "g": "pnpm push",
-    "push": "pnpm commit",
+    "c": "npm run commit",
+    "g": "npm run push",
+    "push": "npm run commit",
     "_push": "git push origin",
     "_pull": "git pull origin",
-    "postpush": "uname -s | grep -q Darwin && pnpm _push || while true; do timeout 10 pnpm _push && break; done",
-    "pull": "uname -s | grep -q Darwin && pnpm _pull || while true; do timeout 10 pnpm _pull && break; done",
-    "lab": "pnpm build && ./outfile.cjs",
+    "postpush": "uname -s | grep -q Darwin && npm run _push || while true; do timeout 10 npm run _push && break; done",
+    "pull": "uname -s | grep -q Darwin && npm run _pull || while true; do timeout 10 npm run _pull && break; done",
+    "lab": "npm run build && ./outfile.cjs",
     "diff": "npx -y cpgit vuejs/create-vue . -f",
     "prepare": "husky",
     "format": "prettier --write .",
@@ -34,7 +34,7 @@
     "pretest": "run-s build snapshot",
     "test": "zx ./scripts/test.mjs",
     "test:unit": "vitest",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",

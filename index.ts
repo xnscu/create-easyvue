@@ -542,7 +542,7 @@ async function init() {
   console.log(`\nIf you want to initialize project as a github repo, run:\n`)
   const githubCreateString = `
   cd ${projectName} &&
-  git init --initial-branch=master &&
+  git init &&
   git add . &&
   git commit -am "initial commit by easyvue" &&
   gh repo create ${projectName} --private --source=. && git push --set-upstream origin master`

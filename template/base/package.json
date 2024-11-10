@@ -34,6 +34,7 @@
     "dotenv": "^16.0.3",
     "dotenv-cli": "^6.0.0",
     "dotenv-expand": "^10.0.0",
+    "less": "^4.2.0",
     "patch-package": "^7.0.0",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.2",

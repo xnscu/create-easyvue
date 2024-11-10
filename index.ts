@@ -530,8 +530,9 @@ async function init() {
   console.log(`\n${language.infos.done}\n`)
   if (root !== cwd) {
     const cdProjectName = path.relative(cwd, root)
+    const safeCd = cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName
     console.log(
-      `  ${bold(green(`cd ${cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName}`))}`
+      `  ${bold(green(`cd ${safeCd}`))}`
     )
   }
   console.log(`  ${bold(green(getCommand(packageManager, 'install')))}`)
@@ -540,9 +541,7 @@ async function init() {
   }
   console.log(`  ${bold(green(getCommand(packageManager, 'dev')))}`)
   console.log(`\nIf you want to initialize project as a github repo, run:\n`)
-  const githubCreateString = `
-  cd ${projectName} &&
-  git init &&
+  const githubCreateString = `git init &&
   git add . &&
   git commit -am "initial commit by easyvue" &&
   gh repo create ${projectName} --private --source=. && git push --set-upstream origin master`

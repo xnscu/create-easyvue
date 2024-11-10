@@ -2,10 +2,6 @@
 
 Start an opinioned Vite + Vue 3 project with [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components), [unplugin-vue-router](https://uvr.esm.is/introduction.html) and [unplugin-auto-import](https://github.com/unplugin/unplugin-auto-import) included.
 
-<p align="center">
-  <img src="https://github.com/vuejs/create-easyvue/blob/main/media/screenshot-cli.png?raw=true" width="802">
-</p>
-
 ## Usage
 
 To create a new Vue project using `create-easyvue`, simply run the following command in your terminal:

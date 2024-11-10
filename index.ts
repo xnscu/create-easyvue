@@ -236,7 +236,7 @@ async function init() {
   // `initial` won't take effect if the prompt type is null
   // so we still have to assign the default values here
   const {
-    projectName,
+    projectName = defaultProjectName,
     packageName = projectName ?? defaultProjectName,
     userName = argv.user ?? '',
     shouldOverwrite = argv.force,
@@ -544,7 +544,7 @@ async function init() {
   const githubCreateString = `git init &&
   git add . &&
   git commit -am "initial commit by easyvue" &&
-  gh repo create ${projectName} --private --source=. && git push --set-upstream origin master`
+  gh repo create ${userName}/${projectName} --private --source=. && git push --set-upstream origin master`
   console.log(`  ${bold(green(githubCreateString))}`)
   console.log()
 }

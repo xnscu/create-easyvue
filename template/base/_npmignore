@@ -1,12 +1,5 @@
-.github
-.vscode
-.env
-example
-spec
-components
-composables
-globals
-public
-tsconfig.*.json
-vite.config.*
-vitest.config.*
+*
+!dist/
+!dist/**
+!src/
+!src/**

@@ -12,7 +12,7 @@
   "editor.formatOnPaste": false,
   "editor.formatOnType": false,
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
   "editor.formatOnSaveMode": "file",
   "files.autoSave": "onFocusChange",
   "html.format.unformatted": "wbr,%",
